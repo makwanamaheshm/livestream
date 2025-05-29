@@ -1,0 +1,26 @@
+name: YouTube Livestream
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'  # Auto-restart every 6 hours
+
+jobs:
+  stream:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Install FFmpeg
+        run: sudo apt update && sudo apt install -y ffmpeg
+
+      - name: Download Video
+        run: wget -O stream.mp4 "https://transfer.sh/get/placeholder/stream.mp4"
+
+      - name: Start Streaming
+        run: |
+          ffmpeg -re -stream_loop -1 -i stream.mp4 \
+          -c:v libx264 -preset veryfast -b:v 2500k -maxrate 3000k -bufsize 4000k \
+          -c:a aac -b:a 128k -ar 44100 \
+          -f flv "rtmp://a.rtmp.youtube.com/live2/60dr-e2uc-pcmq-huj4-7u82"
+
