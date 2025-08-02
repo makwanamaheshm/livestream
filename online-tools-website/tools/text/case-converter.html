@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Converter - Online Tools Hub</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1><a href="../../index.html" style="color: inherit; text-decoration: none;"><i class="fas fa-tools"></i> Online Tools Hub</a></h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../../index.html#tools">Tools</a></li>
+                    <li><a href="../../index.html#about">About</a></li>
+                    <li><a href="../../index.html#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tool Container -->
+    <div class="container">
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1><i class="fas fa-font"></i> Case Converter</h1>
+                <p>Convert text between different letter cases instantly</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="input-group">
+                    <label for="inputText">Enter your text:</label>
+                    <textarea id="inputText" placeholder="Type or paste your text here..." rows="6"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>Select conversion type:</label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                        <button class="btn" onclick="convertText('upper')">UPPERCASE</button>
+                        <button class="btn" onclick="convertText('lower')">lowercase</button>
+                        <button class="btn" onclick="convertText('title')">Title Case</button>
+                        <button class="btn" onclick="convertText('camel')">camelCase</button>
+                        <button class="btn" onclick="convertText('pascal')">PascalCase</button>
+                        <button class="btn" onclick="convertText('snake')">snake_case</button>
+                        <button class="btn" onclick="convertText('kebab')">kebab-case</button>
+                        <button class="btn btn-secondary" onclick="reverseText()">Reverse Text</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="outputText">Result:</label>
+                    <div class="result-box">
+                        <button class="copy-btn" onclick="copyResult()">Copy</button>
+                        <textarea id="outputText" readonly rows="6" placeholder="Your converted text will appear here..."></textarea>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" onclick="clearAll()">Clear All</button>
+                    <button class="btn btn-secondary" onclick="swapText()">Swap Text</button>
+                </div>
+            </div>
+
+            <!-- Tool Information -->
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--gray-light);">
+                <h2>About Case Converter</h2>
+                <p>The Case Converter tool allows you to quickly transform your text between different letter cases. Whether you need to convert to uppercase, lowercase, title case, or programming-specific formats like camelCase or snake_case, this tool makes it simple and fast.</p>
+                
+                <h3>Features:</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>UPPERCASE:</strong> Converts all letters to capital letters</li>
+                    <li><strong>lowercase:</strong> Converts all letters to small letters</li>
+                    <li><strong>Title Case:</strong> Capitalizes the first letter of each word</li>
+                    <li><strong>camelCase:</strong> First word lowercase, subsequent words capitalized, no spaces</li>
+                    <li><strong>PascalCase:</strong> All words capitalized, no spaces</li>
+                    <li><strong>snake_case:</strong> All lowercase with underscores between words</li>
+                    <li><strong>kebab-case:</strong> All lowercase with hyphens between words</li>
+                    <li><strong>Reverse Text:</strong> Reverses the order of characters</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Online Tools Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        function convertText(caseType) {
+            const input = document.getElementById('inputText').value;
+            const output = ToolUtils.convertCase(input, caseType);
+            document.getElementById('outputText').value = output;
+        }
+
+        function reverseText() {
+            const input = document.getElementById('inputText').value;
+            const output = input.split('').reverse().join('');
+            document.getElementById('outputText').value = output;
+        }
+
+        function copyResult() {
+            const outputText = document.getElementById('outputText').value;
+            const copyBtn = document.querySelector('.copy-btn');
+            copyToClipboard(outputText, copyBtn);
+        }
+
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+        }
+
+        function swapText() {
+            const input = document.getElementById('inputText').value;
+            const output = document.getElementById('outputText').value;
+            document.getElementById('inputText').value = output;
+            document.getElementById('outputText').value = input;
+        }
+
+        // Auto-resize textareas
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+            
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = this.scrollHeight + 'px';
+            });
+        });
+    </script>
+</body>
+</html>

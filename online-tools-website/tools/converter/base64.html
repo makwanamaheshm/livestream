@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder/Decoder - Online Tools Hub</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1><a href="../../index.html" style="color: inherit; text-decoration: none;"><i class="fas fa-tools"></i> Online Tools Hub</a></h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../../index.html#tools">Tools</a></li>
+                    <li><a href="../../index.html#about">About</a></li>
+                    <li><a href="../../index.html#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tool Container -->
+    <div class="container">
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1><i class="fas fa-exchange-alt"></i> Base64 Encoder/Decoder</h1>
+                <p>Encode text to Base64 or decode Base64 to text instantly</p>
+            </div>
+
+            <div class="tool-content">
+                <!-- Mode Selection -->
+                <div class="input-group">
+                    <label>Select Mode:</label>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn mode-btn active" onclick="setMode('encode')" id="encodeBtn">
+                            <i class="fas fa-lock"></i> Encode
+                        </button>
+                        <button class="btn mode-btn" onclick="setMode('decode')" id="decodeBtn">
+                            <i class="fas fa-unlock"></i> Decode
+                        </button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="inputText" id="inputLabel">Text to encode:</label>
+                    <textarea id="inputText" placeholder="Enter text to encode to Base64..." rows="6"></textarea>
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="btn" onclick="convert()" style="padding: 1rem 3rem;">
+                        <i class="fas fa-sync-alt"></i> <span id="convertBtnText">Encode</span>
+                    </button>
+                </div>
+
+                <div class="input-group">
+                    <label for="outputText" id="outputLabel">Base64 output:</label>
+                    <div class="result-box">
+                        <button class="copy-btn" onclick="copyResult()">Copy</button>
+                        <textarea id="outputText" readonly rows="6" placeholder="Result will appear here..."></textarea>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" onclick="clearAll()">Clear All</button>
+                    <button class="btn btn-secondary" onclick="swapText()">Swap Text</button>
+                    <button class="btn btn-secondary" onclick="loadSample()">Load Sample</button>
+                </div>
+
+                <!-- File Upload Section -->
+                <div style="margin-top: 30px; padding: 20px; background: var(--light-bg); border-radius: 8px;">
+                    <h3 style="margin-bottom: 15px;">File Encoding</h3>
+                    <p style="color: var(--gray-medium); margin-bottom: 15px;">You can also encode files to Base64</p>
+                    <input type="file" id="fileInput" style="display: none;" onchange="handleFile()">
+                    <button class="btn" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-file-upload"></i> Choose File
+                    </button>
+                    <span id="fileName" style="margin-left: 10px; color: var(--gray-medium);">No file selected</span>
+                </div>
+            </div>
+
+            <!-- Tool Information -->
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--gray-light);">
+                <h2>About Base64 Encoding</h2>
+                <p>Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format. It's commonly used for encoding data that needs to be stored and transferred over media designed to deal with textual data.</p>
+                
+                <h3>Common Use Cases:</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Email Attachments:</strong> Encoding binary files for email transmission</li>
+                    <li><strong>Data URLs:</strong> Embedding images directly in HTML/CSS</li>
+                    <li><strong>API Communication:</strong> Sending binary data in JSON APIs</li>
+                    <li><strong>Configuration Files:</strong> Storing binary data in text-based configs</li>
+                    <li><strong>Authentication:</strong> Basic authentication headers in HTTP</li>
+                </ul>
+
+                <h3>Features:</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Instant encoding and decoding</li>
+                    <li>Support for text and file inputs</li>
+                    <li>Copy results with one click</li>
+                    <li>Handle large text blocks</li>
+                    <li>UTF-8 encoding support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Online Tools Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        let currentMode = 'encode';
+        
+        function setMode(mode) {
+            currentMode = mode;
+            
+            // Update button states
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(mode + 'Btn').classList.add('active');
+            
+            // Update labels and placeholders
+            if (mode === 'encode') {
+                document.getElementById('inputLabel').textContent = 'Text to encode:';
+                document.getElementById('outputLabel').textContent = 'Base64 output:';
+                document.getElementById('inputText').placeholder = 'Enter text to encode to Base64...';
+                document.getElementById('convertBtnText').textContent = 'Encode';
+            } else {
+                document.getElementById('inputLabel').textContent = 'Base64 to decode:';
+                document.getElementById('outputLabel').textContent = 'Decoded text:';
+                document.getElementById('inputText').placeholder = 'Enter Base64 to decode...';
+                document.getElementById('convertBtnText').textContent = 'Decode';
+            }
+            
+            // Clear fields
+            clearAll();
+        }
+        
+        function convert() {
+            const input = document.getElementById('inputText').value;
+            let output = '';
+            
+            if (currentMode === 'encode') {
+                output = ToolUtils.base64Encode(input);
+            } else {
+                output = ToolUtils.base64Decode(input);
+            }
+            
+            document.getElementById('outputText').value = output;
+        }
+        
+        function copyResult() {
+            const outputText = document.getElementById('outputText').value;
+            const copyBtn = document.querySelector('.copy-btn');
+            copyToClipboard(outputText, copyBtn);
+        }
+        
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+        }
+        
+        function swapText() {
+            const input = document.getElementById('inputText').value;
+            const output = document.getElementById('outputText').value;
+            document.getElementById('inputText').value = output;
+            document.getElementById('outputText').value = input;
+        }
+        
+        function loadSample() {
+            if (currentMode === 'encode') {
+                document.getElementById('inputText').value = 'Hello, World! This is a Base64 encoding example.';
+            } else {
+                document.getElementById('inputText').value = 'SGVsbG8sIFdvcmxkISBUaGlzIGlzIGEgQmFzZTY0IGVuY29kaW5nIGV4YW1wbGUu';
+            }
+            convert();
+        }
+        
+        function handleFile() {
+            const file = document.getElementById('fileInput').files[0];
+            if (file) {
+                document.getElementById('fileName').textContent = file.name;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64 = btoa(e.target.result);
+                    document.getElementById('outputText').value = base64;
+                };
+                reader.readAsBinaryString(file);
+            }
+        }
+        
+        // Auto-resize textareas
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 400) + 'px';
+            });
+        });
+        
+        // Add active button styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .mode-btn {
+                background-color: var(--gray-medium);
+            }
+            .mode-btn.active {
+                background-color: var(--primary-color);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
