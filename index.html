@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnePageTools - Free Online Utilities & Tools</title>
+    <meta name="description" content="Free online tools for text processing, image editing, conversions, generators and more. All in one place - no downloads required!">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <i class="fas fa-tools"></i>
+                    <span>OnePageTools</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#tools" class="nav-link">Tools</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Free Online Tools & Utilities</h1>
+                <p>Boost your productivity with our collection of powerful, free online tools. No downloads, no registration required!</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Tools Available</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">1M+</span>
+                        <span class="stat-label">Monthly Users</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Free Forever</span>
+                    </div>
+                </div>
+                <a href="#tools" class="cta-button">
+                    <i class="fas fa-rocket"></i>
+                    Explore Tools
+                </a>
+            </div>
+            <div class="hero-image">
+                <div class="floating-tools">
+                    <div class="tool-icon" style="--delay: 0s">
+                        <i class="fas fa-text-width"></i>
+                    </div>
+                    <div class="tool-icon" style="--delay: 0.5s">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="tool-icon" style="--delay: 1s">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="tool-icon" style="--delay: 1.5s">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div class="tool-icon" style="--delay: 2s">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="tool-icon" style="--delay: 2.5s">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="toolSearch" placeholder="Search for tools... (e.g. password generator, image compressor)">
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Categories -->
+    <section id="tools" class="tools-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Tool Categories</h2>
+                <p>Choose from our extensive collection of online utilities</p>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="tab-button active" data-category="all">
+                    <i class="fas fa-grid-horizontal"></i>
+                    All Tools
+                </button>
+                <button class="tab-button" data-category="text">
+                    <i class="fas fa-text-width"></i>
+                    Text Tools
+                </button>
+                <button class="tab-button" data-category="image">
+                    <i class="fas fa-image"></i>
+                    Image Tools
+                </button>
+                <button class="tab-button" data-category="converter">
+                    <i class="fas fa-exchange-alt"></i>
+                    Converters
+                </button>
+                <button class="tab-button" data-category="generator">
+                    <i class="fas fa-magic"></i>
+                    Generators
+                </button>
+                <button class="tab-button" data-category="calculator">
+                    <i class="fas fa-calculator"></i>
+                    Calculators
+                </button>
+                <button class="tab-button" data-category="developer">
+                    <i class="fas fa-code"></i>
+                    Developer
+                </button>
+            </div>
+
+            <!-- Tools Grid -->
+            <div class="tools-grid" id="toolsGrid">
+                <!-- Text Tools -->
+                <div class="tool-card" data-category="text" data-tool="word-counter">
+                    <div class="tool-icon">
+                        <i class="fas fa-sort-numeric-up"></i>
+                    </div>
+                    <h3>Word Counter</h3>
+                    <p>Count words, characters, sentences and paragraphs in your text</p>
+                    <div class="tool-tags">
+                        <span class="tag">Text</span>
+                        <span class="tag">Analysis</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="text" data-tool="case-converter">
+                    <div class="tool-icon">
+                        <i class="fas fa-text-height"></i>
+                    </div>
+                    <h3>Case Converter</h3>
+                    <p>Convert text to uppercase, lowercase, title case, and more</p>
+                    <div class="tool-tags">
+                        <span class="tag">Text</span>
+                        <span class="tag">Transform</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="text" data-tool="text-diff">
+                    <div class="tool-icon">
+                        <i class="fas fa-not-equal"></i>
+                    </div>
+                    <h3>Text Difference</h3>
+                    <p>Compare two texts and highlight the differences</p>
+                    <div class="tool-tags">
+                        <span class="tag">Text</span>
+                        <span class="tag">Compare</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="text" data-tool="lorem-ipsum">
+                    <div class="tool-icon">
+                        <i class="fas fa-paragraph"></i>
+                    </div>
+                    <h3>Lorem Ipsum Generator</h3>
+                    <p>Generate placeholder text for your designs and layouts</p>
+                    <div class="tool-tags">
+                        <span class="tag">Text</span>
+                        <span class="tag">Generator</span>
+                    </div>
+                </div>
+
+                <!-- Image Tools -->
+                <div class="tool-card" data-category="image" data-tool="image-resizer">
+                    <div class="tool-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3>Image Resizer</h3>
+                    <p>Resize images while maintaining aspect ratio and quality</p>
+                    <div class="tool-tags">
+                        <span class="tag">Image</span>
+                        <span class="tag">Resize</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="image" data-tool="image-compressor">
+                    <div class="tool-icon">
+                        <i class="fas fa-compress"></i>
+                    </div>
+                    <h3>Image Compressor</h3>
+                    <p>Compress images to reduce file size without losing quality</p>
+                    <div class="tool-tags">
+                        <span class="tag">Image</span>
+                        <span class="tag">Optimize</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="image" data-tool="image-converter">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <h3>Image Format Converter</h3>
+                    <p>Convert images between different formats (JPG, PNG, WebP, etc.)</p>
+                    <div class="tool-tags">
+                        <span class="tag">Image</span>
+                        <span class="tag">Convert</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="image" data-tool="image-cropper">
+                    <div class="tool-icon">
+                        <i class="fas fa-crop"></i>
+                    </div>
+                    <h3>Image Cropper</h3>
+                    <p>Crop images to specific dimensions or aspect ratios</p>
+                    <div class="tool-tags">
+                        <span class="tag">Image</span>
+                        <span class="tag">Edit</span>
+                    </div>
+                </div>
+
+                <!-- Converter Tools -->
+                <div class="tool-card" data-category="converter" data-tool="base64">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Base64 Encoder/Decoder</h3>
+                    <p>Encode and decode text and files to/from Base64 format</p>
+                    <div class="tool-tags">
+                        <span class="tag">Convert</span>
+                        <span class="tag">Encode</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="converter" data-tool="url-encoder">
+                    <div class="tool-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>URL Encoder/Decoder</h3>
+                    <p>Encode and decode URLs for safe transmission</p>
+                    <div class="tool-tags">
+                        <span class="tag">URL</span>
+                        <span class="tag">Encode</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="converter" data-tool="json-formatter">
+                    <div class="tool-icon">
+                        <i class="fas fa-brackets-curly"></i>
+                    </div>
+                    <h3>JSON Formatter</h3>
+                    <p>Format, validate, and minify JSON data</p>
+                    <div class="tool-tags">
+                        <span class="tag">JSON</span>
+                        <span class="tag">Format</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="converter" data-tool="unit-converter">
+                    <div class="tool-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Unit Converter</h3>
+                    <p>Convert between different units of measurement</p>
+                    <div class="tool-tags">
+                        <span class="tag">Convert</span>
+                        <span class="tag">Units</span>
+                    </div>
+                </div>
+
+                <!-- Generator Tools -->
+                <div class="tool-card" data-category="generator" data-tool="qr-generator">
+                    <div class="tool-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>QR Code Generator</h3>
+                    <p>Generate QR codes for URLs, text, and other data</p>
+                    <div class="tool-tags">
+                        <span class="tag">QR</span>
+                        <span class="tag">Generate</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="generator" data-tool="password-generator">
+                    <div class="tool-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Password Generator</h3>
+                    <p>Generate secure passwords with customizable options</p>
+                    <div class="tool-tags">
+                        <span class="tag">Security</span>
+                        <span class="tag">Password</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="generator" data-tool="uuid-generator">
+                    <div class="tool-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>UUID Generator</h3>
+                    <p>Generate unique identifiers (UUID/GUID) for your applications</p>
+                    <div class="tool-tags">
+                        <span class="tag">UUID</span>
+                        <span class="tag">ID</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="generator" data-tool="color-palette">
+                    <div class="tool-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Color Palette Generator</h3>
+                    <p>Generate beautiful color palettes for your designs</p>
+                    <div class="tool-tags">
+                        <span class="tag">Color</span>
+                        <span class="tag">Design</span>
+                    </div>
+                </div>
+
+                <!-- Calculator Tools -->
+                <div class="tool-card" data-category="calculator" data-tool="percentage">
+                    <div class="tool-icon">
+                        <i class="fas fa-percent"></i>
+                    </div>
+                    <h3>Percentage Calculator</h3>
+                    <p>Calculate percentages, increases, decreases, and more</p>
+                    <div class="tool-tags">
+                        <span class="tag">Math</span>
+                        <span class="tag">Percentage</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="calculator" data-tool="bmi">
+                    <div class="tool-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h3>BMI Calculator</h3>
+                    <p>Calculate your Body Mass Index and health status</p>
+                    <div class="tool-tags">
+                        <span class="tag">Health</span>
+                        <span class="tag">BMI</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="calculator" data-tool="loan">
+                    <div class="tool-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Loan Calculator</h3>
+                    <p>Calculate loan payments, interest, and amortization</p>
+                    <div class="tool-tags">
+                        <span class="tag">Finance</span>
+                        <span class="tag">Loan</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="calculator" data-tool="age">
+                    <div class="tool-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3>Age Calculator</h3>
+                    <p>Calculate your exact age in years, months, and days</p>
+                    <div class="tool-tags">
+                        <span class="tag">Date</span>
+                        <span class="tag">Age</span>
+                    </div>
+                </div>
+
+                <!-- Developer Tools -->
+                <div class="tool-card" data-category="developer" data-tool="html-encoder">
+                    <div class="tool-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3>HTML Encoder/Decoder</h3>
+                    <p>Encode and decode HTML entities and special characters</p>
+                    <div class="tool-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">Encode</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="developer" data-tool="css-minifier">
+                    <div class="tool-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3>CSS Minifier</h3>
+                    <p>Minify and compress CSS code for better performance</p>
+                    <div class="tool-tags">
+                        <span class="tag">CSS</span>
+                        <span class="tag">Minify</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="developer" data-tool="js-minifier">
+                    <div class="tool-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h3>JavaScript Minifier</h3>
+                    <p>Minify and obfuscate JavaScript code</p>
+                    <div class="tool-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Minify</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-category="developer" data-tool="regex-tester">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions with live matching</p>
+                    <div class="tool-tags">
+                        <span class="tag">Regex</span>
+                        <span class="tag">Test</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Modal -->
+    <div id="toolModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Tool Name</h2>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Tool content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose OnePageTools?</h2>
+                <p>Discover what makes our platform the best choice for online utilities</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>All tools work instantly in your browser with no loading times or delays</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>100% Secure</h3>
+                    <p>All processing happens locally in your browser. Your data never leaves your device</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Works perfectly on all devices - desktop, tablet, and mobile</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>No Downloads</h3>
+                    <p>No software installation required. Everything works directly in your browser</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Always Free</h3>
+                    <p>All tools are completely free to use with no hidden costs or subscriptions</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>24/7 Available</h3>
+                    <p>Access our tools anytime, anywhere. No server downtime or maintenance windows</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About OnePageTools</h2>
+                    <p>OnePageTools is a comprehensive collection of free online utilities designed to boost your productivity and simplify your daily tasks. Whether you're a developer, designer, student, or business professional, our tools are built to save you time and effort.</p>
+                    
+                    <p>Our mission is to provide fast, reliable, and easy-to-use tools that work directly in your browser without requiring any downloads or installations. We believe that powerful tools should be accessible to everyone, which is why all our utilities are completely free.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <strong>50+</strong>
+                            <span>Available Tools</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>1M+</strong>
+                            <span>Monthly Users</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>99.9%</strong>
+                            <span>Uptime</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <div class="about-graphic">
+                        <div class="graphic-element"></div>
+                        <div class="graphic-element"></div>
+                        <div class="graphic-element"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Have a suggestion for a new tool or found a bug? We'd love to hear from you!</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Us</h3>
+                            <p>hello@onepagetools.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Report Issues</h3>
+                            <p>Found a bug? Let us know and we'll fix it quickly!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Suggest Tools</h3>
+                            <p>Have an idea for a new tool? We're always expanding!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-tools"></i>
+                        <span>OnePageTools</span>
+                    </div>
+                    <p>Free online tools and utilities to boost your productivity. Fast, secure, and always available.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="#" data-tool="password-generator">Password Generator</a></li>
+                        <li><a href="#" data-tool="qr-generator">QR Code Generator</a></li>
+                        <li><a href="#" data-tool="image-compressor">Image Compressor</a></li>
+                        <li><a href="#" data-tool="word-counter">Word Counter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#" data-category="text">Text Tools</a></li>
+                        <li><a href="#" data-category="image">Image Tools</a></li>
+                        <li><a href="#" data-category="converter">Converters</a></li>
+                        <li><a href="#" data-category="generator">Generators</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 OnePageTools. All rights reserved. Made with ❤️ for productivity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
