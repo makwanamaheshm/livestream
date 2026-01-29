@@ -1,0 +1,14 @@
+{
+    "api_keys": {
+        "elevenlabs": "sk_fc848225ae9eea44da327054ae822165886fe87ece55287c",
+        "elevenlabs_voice_id": "G17SuINrv2H9FC6nvetn",
+        "ideogram": "_32w9YNspQiaX5gi3G0o7MiUsMUJxl0F8MMN95m7s2VjWjMkySet4ErNTbRdh2t510CE8a7lro5RcT52WgQdYw",
+        "gemini": "project-b8bf7f39-76d1-4629-bd2"
+    },
+    "settings": {
+        "image_provider": "ideogram",
+        "video_resolution": "1920x1080",
+        "images_count": 6,
+        "output_folder": "output"
+    }
+}
