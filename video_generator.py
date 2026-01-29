@@ -2,7 +2,7 @@
 """
 Video Generator Script
 - Generates voice using ElevenLabs API
-- Generates images using Gemini API
+- Generates images using Ideogram API
 - Combines into video using FFmpeg
 """
 
@@ -17,19 +17,19 @@ from pathlib import Path
 # Configuration
 ELEVENLABS_API_KEY = "sk_fc848225ae9eea44da327054ae822165886fe87ece55287c"
 ELEVENLABS_VOICE_ID = "G17SuINrv2H9FC6nvetn"
-GEMINI_API_KEY = "project-b8bf7f39-76d1-4629-bd2"
+IDEOGRAM_API_KEY = "_32w9YNspQiaX5gi3G0o7MiUsMUJxl0F8MMN95m7s2VjWjMkySet4ErNTbRdh2t510CE8a7lro5RcT52WgQdYw"
 
 # Script for the video
 SCRIPT = """Hey guys, tonight we step back exactly one hundred years into a world that looks deceptively familiar in photographs but would feel utterly alien the moment you opened your eyes inside it. Imagine waking up tomorrow morning and discovering that your smartphone is gone, your thermostat doesn't exist, and the bathroom you stumble toward might actually be a small wooden shed fifty feet from your back door. This is America in the 1920s—the Roaring Twenties, they'll call it later, but right now, in this moment, you're just trying to survive until breakfast without freezing, tripping over a chamber pot, or accidentally poisoning yourself with the patent medicine you bought last week. You probably won't last a day without complaining, honestly. The coffee is weak, the mornings are brutal, and nobody has invented the snooze button yet. So, before you get comfortable, take a moment to like the video and subscribe—but only if you genuinely enjoy what I do here. Drop a comment telling me where you're listening from and what time it is where you are—I love seeing how this little community stretches across time zones, all of us drifting off together. Now, dim the lights, maybe turn on a fan for that soft background hum, and let's ease into tonight's journey together."""
 
-# Image prompts for 1920s America theme
+# Image prompts for 1920s America theme (optimized for Ideogram)
 IMAGE_PROMPTS = [
-    "Vintage 1920s American city street with old cars and people in period clothing, sepia tone, historical photograph style",
-    "1920s American wooden farmhouse with outdoor shed bathroom, morning fog, vintage photography",
-    "Roaring Twenties jazz club interior with people dancing, art deco style, warm lighting",
-    "1920s American kitchen with vintage stove and coffee pot, morning light through window",
-    "Old patent medicine bottles and advertisements from 1920s America, vintage still life",
-    "1920s bedroom with chamber pot, oil lamp, and vintage furniture, cozy atmosphere"
+    "Vintage 1920s American city street with Model T Ford cars, people in period clothing, sepia toned historical photograph, cinematic lighting",
+    "1920s American wooden farmhouse at dawn, outdoor shed bathroom in distance, morning fog, vintage photography style, nostalgic atmosphere",
+    "Roaring Twenties jazz club interior, people dancing Charleston, art deco decorations, warm golden lighting, vintage glamour",
+    "1920s American kitchen interior, cast iron stove, percolator coffee pot, morning sunlight through window, rustic charm",
+    "Old patent medicine bottles and vintage advertisements from 1920s America, still life composition, antique aesthetic",
+    "1920s bedroom with oil lamp on nightstand, vintage iron bed frame, cozy warm atmosphere, historical interior"
 ]
 
 # Output directory
@@ -69,52 +69,63 @@ def generate_voice(text, output_path):
         print(response.text)
         return False
 
-def generate_images_gemini(prompts, output_dir):
-    """Generate images using Gemini API"""
-    print("🖼️ Generating images with Gemini...")
+def generate_images_ideogram(prompts, output_dir):
+    """Generate images using Ideogram API"""
+    print("🖼️ Generating images with Ideogram...")
 
-    # Try using Google's Imagen API through Gemini
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:generateImages?key={GEMINI_API_KEY}"
+    url = "https://api.ideogram.ai/generate"
+
+    headers = {
+        "Api-Key": IDEOGRAM_API_KEY,
+        "Content-Type": "application/json"
+    }
 
     generated_images = []
 
     for i, prompt in enumerate(prompts):
         print(f"  Generating image {i+1}/{len(prompts)}...")
 
-        headers = {
-            "Content-Type": "application/json"
-        }
-
         data = {
-            "prompt": prompt,
-            "number_of_images": 1,
-            "aspect_ratio": "16:9",
-            "safety_filter_level": "block_only_high",
-            "person_generation": "allow_adult"
+            "image_request": {
+                "prompt": prompt,
+                "aspect_ratio": "ASPECT_16_9",
+                "model": "V_2",
+                "magic_prompt_option": "AUTO",
+                "style_type": "REALISTIC"
+            }
         }
 
         try:
-            response = requests.post(url, json=data, headers=headers, timeout=60)
+            response = requests.post(url, json=data, headers=headers, timeout=120)
 
             if response.status_code == 200:
                 result = response.json()
-                if 'generatedImages' in result and len(result['generatedImages']) > 0:
-                    image_data = result['generatedImages'][0].get('image', {}).get('imageBytes', '')
-                    if image_data:
-                        image_path = output_dir / f"image_{i+1}.png"
-                        with open(image_path, 'wb') as f:
-                            f.write(base64.b64decode(image_data))
-                        generated_images.append(str(image_path))
-                        print(f"  ✅ Image {i+1} saved")
-                        continue
 
-            print(f"  ⚠️ Gemini response: {response.status_code} - {response.text[:200]}")
+                # Get image URL from response
+                if 'data' in result and len(result['data']) > 0:
+                    image_url = result['data'][0].get('url')
+                    if image_url:
+                        # Download the image
+                        img_response = requests.get(image_url, timeout=60)
+                        if img_response.status_code == 200:
+                            image_path = output_dir / f"image_{i+1}.png"
+                            with open(image_path, 'wb') as f:
+                                f.write(img_response.content)
+                            generated_images.append(str(image_path))
+                            print(f"  ✅ Image {i+1} saved")
+                            continue
+
+            print(f"  ⚠️ Ideogram response: {response.status_code}")
+            try:
+                print(f"     {response.json()}")
+            except:
+                print(f"     {response.text[:300]}")
 
         except Exception as e:
             print(f"  ⚠️ Error generating image {i+1}: {e}")
 
-        # Small delay to avoid rate limiting
-        time.sleep(1)
+        # Delay between requests to avoid rate limiting
+        time.sleep(2)
 
     return generated_images
 
@@ -230,21 +241,25 @@ def main():
     audio_path = OUTPUT_DIR / "narration.mp3"
     video_path = OUTPUT_DIR / "final_video.mp4"
 
-    # Step 1: Generate voice
+    # Step 1: Generate voice (skip if already exists)
     print("\n📌 Step 1: Voice Generation")
-    voice_success = generate_voice(SCRIPT, audio_path)
+    if audio_path.exists():
+        print(f"✅ Audio already exists: {audio_path}")
+        voice_success = True
+    else:
+        voice_success = generate_voice(SCRIPT, audio_path)
 
     if not voice_success:
         print("❌ Failed to generate voice. Exiting.")
         return
 
-    # Step 2: Generate images
-    print("\n📌 Step 2: Image Generation")
-    images = generate_images_gemini(IMAGE_PROMPTS, OUTPUT_DIR)
+    # Step 2: Generate images with Ideogram
+    print("\n📌 Step 2: Image Generation (Ideogram)")
+    images = generate_images_ideogram(IMAGE_PROMPTS, OUTPUT_DIR)
 
-    # If Gemini fails, use placeholder images
+    # If Ideogram fails, use placeholder images
     if len(images) < 3:
-        print("\n⚠️ Gemini API issue. Creating placeholder images instead...")
+        print("\n⚠️ Ideogram API issue. Creating placeholder images instead...")
         images = generate_placeholder_images(6, OUTPUT_DIR)
 
     # Step 3: Create video
