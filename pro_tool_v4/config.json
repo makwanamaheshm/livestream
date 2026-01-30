@@ -1,0 +1,14 @@
+{
+    "api_keys": {
+        "openai": "",
+        "elevenlabs": "",
+        "elevenlabs_voice_id": "",
+        "ideogram": "",
+        "gemini": ""
+    },
+    "settings": {
+        "video_resolution": "1920x1080",
+        "min_image_duration": 2.0,
+        "max_image_duration": 15.0
+    }
+}
