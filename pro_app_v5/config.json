@@ -1,0 +1,15 @@
+{
+    "api_keys": {
+        "openai": "",
+        "elevenlabs": "",
+        "elevenlabs_voice_id": "",
+        "ideogram": ""
+    },
+    "settings": {
+        "resolution": "1920x1080",
+        "fps": 30,
+        "transition_duration": 1.0,
+        "zoom_intensity": 1.2,
+        "default_image_duration": 5.0
+    }
+}
