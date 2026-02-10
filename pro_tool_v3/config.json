@@ -1,0 +1,16 @@
+{
+    "api_keys": {
+        "elevenlabs": "",
+        "elevenlabs_voice_id": "",
+        "ideogram": "",
+        "gemini": "",
+        "openai": ""
+    },
+    "settings": {
+        "image_provider": "ideogram",
+        "video_resolution": "1920x1080",
+        "video_fps": 30,
+        "output_format": "mp4",
+        "sync_mode": "smart"
+    }
+}

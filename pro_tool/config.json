@@ -1,0 +1,19 @@
+{
+    "api_keys": {
+        "elevenlabs": "",
+        "elevenlabs_voice_id": "",
+        "ideogram": "",
+        "gemini": ""
+    },
+    "settings": {
+        "image_provider": "ideogram",
+        "default_voice_model": "eleven_monolingual_v1",
+        "video_resolution": "1920x1080",
+        "video_fps": 30,
+        "image_duration": 5,
+        "output_format": "mp4",
+        "auto_enhance": true,
+        "images_count": 6
+    },
+    "voices": {}
+}

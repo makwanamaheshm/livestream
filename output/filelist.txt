@@ -1,0 +1,13 @@
+file 'image_1.png'
+duration 12.19047616666666666666
+file 'image_2.png'
+duration 12.19047616666666666666
+file 'image_3.png'
+duration 12.19047616666666666666
+file 'image_4.png'
+duration 12.19047616666666666666
+file 'image_5.png'
+duration 12.19047616666666666666
+file 'image_6.png'
+duration 12.19047616666666666666
+file 'image_6.png'
